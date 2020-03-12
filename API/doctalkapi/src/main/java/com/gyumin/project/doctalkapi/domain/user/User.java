@@ -1,6 +1,7 @@
 package com.gyumin.project.doctalkapi.domain.user;
 
 import com.gyumin.project.doctalkapi.domain.BaseTimeEntity;
+import com.gyumin.project.doctalkapi.domain.UserStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,9 +23,14 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserStatus userStatus;
+
     @Builder
-    public User(String name, String password) {
+    public User(String name, String password, UserStatus userStatus) {
         this.name = name;
         this.password = password;
+        this.userStatus = userStatus;
     }
 }
