@@ -1,5 +1,6 @@
 package com.gyumin.project.doctalkapi.domain.user;
 
+import com.gyumin.project.doctalkapi.domain.UserStatus;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,10 +28,12 @@ public class UserRepositoryTest {
     public void findAll() {
         String name = "test";
         String password = "123456";
+        UserStatus userStatus = UserStatus.ACTIVE;
 
         userRepository.save(User.builder()
                 .name(name)
                 .password(password)
+                .userStatus(userStatus)
                 .build());
 
         List<User> userList = userRepository.findAll();
@@ -38,5 +41,6 @@ public class UserRepositoryTest {
         User user = userList.get(0);
         assertThat(user.getName()).isEqualTo(name);
         assertThat(user.getPassword()).isEqualTo(password);
+        assertThat(user.getUserStatus()).isEqualTo(userStatus);
     }
 }
