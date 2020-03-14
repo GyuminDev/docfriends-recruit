@@ -16,7 +16,7 @@ public class Question extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -26,17 +26,14 @@ public class Question extends BaseTimeEntity {
     @Column(nullable = false)
     private String description;
 
-    private String tag;
-
     @Column(nullable = false)
     private String source;
 
     @Builder
-    public Question(User user, String title, String description, String tag, String source) {
+    public Question(User user, String title, String description, String source) {
         this.user = user;
         this.title = title;
         this.description = description;
-        this.tag = tag;
         this.source = source;
     }
 }

@@ -1,8 +1,8 @@
-package com.gyumin.project.doctalkapi.domain.user;
+package com.gyumin.project.doctalkapi.domain.tag;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Mapper
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface TagRepository extends JpaRepository<Tag, Long> {
 }
