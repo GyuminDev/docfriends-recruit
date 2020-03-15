@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gyumin.project.doctalkapi.domain.question.QuestionMapper">
+
+    <resultMap id="userResultMap" type="com.gyumin.project.doctalkapi.dto.UserDto">
+        <id column="id" property="id" javaType="java.lang.Long"/>
+        <result column="email" property="email" javaType="java.lang.String"/>
+        <result column="user_status" property="userStatus" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+    </resultMap>
+
+    <resultMap id="tagResultMap" type="com.gyumin.project.doctalkapi.dto.TagDto">
+        <id column="id" property="id" javaType="java.lang.Long"/>
+        <result column="name" property="name" javaType="java.lang.String"/>
+    </resultMap>
+
+    <resultMap id="allQuestionListResultMap" type="com.gyumin.project.doctalkapi.dto.QuestionListResponseDto">
+        <id column="id" property="id" javaType="java.lang.Long"/>
+        <result column="title" property="title" javaType="java.lang.String"/>
+        <result column="content" property="content" javaType="java.lang.String"/>
+        <result column="created_date" property="createdDate" javaType="java.time.LocalDateTime"/>
+        <association column="user_id" property="user" select="selectUserByQuestionId"/>
+        <collection column="id" property="tagList" select="selectTagByQuestionId"/>
+    </resultMap>
+
+    <select id="selectUserByQuestionId" parameterType="java.lang.Long" resultMap="userResultMap">
+        select
+            u.id, u.email, u.user_status
+        from
+            user u
+        where
+            u.id = #{id}
+    </select>
+
+    <select id="selectTagByQuestionId" parameterType="java.lang.Long" resultMap="tagResultMap">
+        select
+            t.id, t.name
+        from
+            question_tag qt
+            left join tag t on qt.tag_id = t.id
+        where
+            qt.question_id = #{id}
+    </select>
+
+    <select id="findAllByOrderByCreatedDateDesc" resultMap="allQuestionListResultMap">
+        select
+            id, user_id, title, content, source, created_date
+        from
+            question
+        order by created_date desc
+    </select>
+</mapper>
