@@ -14,5 +14,6 @@ import java.util.List;
 public class AnswerDto {
     private Long id;
     private String content;
+    private LocalDateTime createdDate;
     private DoctorDto doctor;
 }

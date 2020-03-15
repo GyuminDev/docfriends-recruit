@@ -16,6 +16,7 @@
     <resultMap id="answerResultMap" type="com.gyumin.project.doctalkapi.dto.AnswerDto">
         <id column="id" property="id" javaType="java.lang.Long"/>
         <result column="name" property="name" javaType="java.lang.String"/>
+        <result column="created_date" property="createdDate" javaType="java.time.LocalDateTime"/>
         <association column="doctor_id" property="doctor" select="selectDoctorByAnswerId"/>
     </resultMap>
 
@@ -50,7 +51,7 @@
 
     <select id="selectAnswerByQuestionId" parameterType="java.lang.Long" resultMap="answerResultMap">
         select
-            a.id, a.content, a.doctor_id
+            a.id, a.content, a.doctor_id, a.created_date
         from
             question q
             left join answer a on q.id = a.question_id
