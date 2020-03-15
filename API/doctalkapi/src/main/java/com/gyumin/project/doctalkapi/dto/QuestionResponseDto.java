@@ -1,5 +1,6 @@
 package com.gyumin.project.doctalkapi.dto;
 
+import com.gyumin.project.doctalkapi.domain.answer.Answer;
 import com.gyumin.project.doctalkapi.domain.tag.Tag;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class QuestionResponseDto {
     private String source;
     private LocalDateTime createdDate;
     private List<Tag> tagList;
+    private List<Answer> answerList;
 
 //    @Builder
 //    public QuestionResponseDto(Question question) {

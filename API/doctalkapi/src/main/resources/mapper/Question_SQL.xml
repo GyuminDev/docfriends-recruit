@@ -13,13 +13,19 @@
         <result column="name" property="name" javaType="java.lang.String"/>
     </resultMap>
 
-    <resultMap id="allQuestionListResultMap" type="com.gyumin.project.doctalkapi.dto.QuestionResponseDto">
+    <resultMap id="answerResultMap" type="com.gyumin.project.doctalkapi.dto.AnswerDto">
+        <id column="id" property="id" javaType="java.lang.Long"/>
+        <result column="name" property="name" javaType="java.lang.String"/>
+    </resultMap>
+
+    <resultMap id="questionResultMap" type="com.gyumin.project.doctalkapi.dto.QuestionResponseDto">
         <id column="id" property="id" javaType="java.lang.Long"/>
         <result column="title" property="title" javaType="java.lang.String"/>
         <result column="content" property="content" javaType="java.lang.String"/>
         <result column="created_date" property="createdDate" javaType="java.time.LocalDateTime"/>
         <association column="user_id" property="user" select="selectUserByQuestionId"/>
         <collection column="id" property="tagList" select="selectTagByQuestionId"/>
+        <collection column="id" property="answerList" select="selectAnswerByQuestionId"/>
     </resultMap>
 
     <select id="selectUserByQuestionId" parameterType="java.lang.Long" resultMap="userResultMap">
@@ -41,7 +47,26 @@
             qt.question_id = #{id}
     </select>
 
-    <select id="findAllByOrderByCreatedDateDesc" resultMap="allQuestionListResultMap">
+    <select id="selectAnswerByQuestionId" parameterType="java.lang.Long" resultType="com.gyumin.project.doctalkapi.dto.AnswerDto">
+        select
+            a.id, a.content, a.doctor_id
+        from
+            question q
+            left join answer a on q.id = a.question_id
+        where
+            q.id = #{id}
+    </select>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="questionResultMap">
+        select
+            id, user_id, title, content, source, created_date
+        from
+            question
+        where
+            id = #{id}
+    </select>
+
+    <select id="findAllByOrderByCreatedDateDesc" resultMap="questionResultMap">
         select
             id, user_id, title, content, source, created_date
         from
