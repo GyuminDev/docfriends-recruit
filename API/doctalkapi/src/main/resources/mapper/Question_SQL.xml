@@ -16,6 +16,7 @@
     <resultMap id="answerResultMap" type="com.gyumin.project.doctalkapi.dto.AnswerDto">
         <id column="id" property="id" javaType="java.lang.Long"/>
         <result column="name" property="name" javaType="java.lang.String"/>
+        <association column="doctor_id" property="doctor" select="selectDoctorByAnswerId"/>
     </resultMap>
 
     <resultMap id="questionResultMap" type="com.gyumin.project.doctalkapi.dto.QuestionResponseDto">
@@ -47,7 +48,7 @@
             qt.question_id = #{id}
     </select>
 
-    <select id="selectAnswerByQuestionId" parameterType="java.lang.Long" resultType="com.gyumin.project.doctalkapi.dto.AnswerDto">
+    <select id="selectAnswerByQuestionId" parameterType="java.lang.Long" resultMap="answerResultMap">
         select
             a.id, a.content, a.doctor_id
         from
@@ -55,6 +56,15 @@
             left join answer a on q.id = a.question_id
         where
             q.id = #{id}
+    </select>
+
+    <select id="selectDoctorByAnswerId" parameterType="java.lang.Long" resultType="com.gyumin.project.doctalkapi.dto.DoctorDto">
+        select
+            d.id, d.name
+        from
+            doctor d
+        where
+            d.id = #{id}
     </select>
 
     <select id="findById" parameterType="java.lang.Long" resultMap="questionResultMap">

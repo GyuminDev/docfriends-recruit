@@ -1,5 +1,6 @@
 package com.gyumin.project.doctalkapi.dto;
 
+import com.gyumin.project.doctalkapi.domain.doctor.Doctor;
 import com.gyumin.project.doctalkapi.domain.question.Question;
 import com.gyumin.project.doctalkapi.domain.tag.Tag;
 import com.gyumin.project.doctalkapi.domain.user.User;
@@ -13,5 +14,5 @@ import java.util.List;
 public class AnswerDto {
     private Long id;
     private String content;
-    private Long doctorId;
+    private DoctorDto doctor;
 }
