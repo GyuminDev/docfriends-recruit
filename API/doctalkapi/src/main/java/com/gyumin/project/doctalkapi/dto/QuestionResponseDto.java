@@ -1,9 +1,6 @@
 package com.gyumin.project.doctalkapi.dto;
 
-import com.gyumin.project.doctalkapi.domain.question.Question;
 import com.gyumin.project.doctalkapi.domain.tag.Tag;
-import com.gyumin.project.doctalkapi.domain.user.User;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class QuestionListResponseDto {
+public class QuestionResponseDto {
     private Long id;
     private UserDto user;
     private String title;
@@ -24,7 +21,7 @@ public class QuestionListResponseDto {
     private List<Tag> tagList;
 
 //    @Builder
-//    public QuestionListResponseDto(Question question) {
+//    public QuestionResponseDto(Question question) {
 //        this.id = question.getId();
 //        this.user = question.getUser();
 //        this.title = question.getTitle();

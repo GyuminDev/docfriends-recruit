@@ -1,16 +1,13 @@
 package com.gyumin.project.doctalkapi.service;
 
-import com.gyumin.project.doctalkapi.domain.question.Question;
 import com.gyumin.project.doctalkapi.domain.question.QuestionMapper;
 import com.gyumin.project.doctalkapi.domain.question.QuestionRepository;
-import com.gyumin.project.doctalkapi.dto.QuestionListResponseDto;
+import com.gyumin.project.doctalkapi.dto.QuestionResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -19,7 +16,7 @@ public class QuestionService {
     private final QuestionMapper questionMapper;
 
     @Transactional
-    public List<QuestionListResponseDto> findAllByOrderByCreatedDateDesc() {
+    public List<QuestionResponseDto> findAllByOrderByCreatedDateDesc() {
         return questionMapper.findAllByOrderByCreatedDateDesc();
     }
 

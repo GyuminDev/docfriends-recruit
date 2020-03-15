@@ -13,7 +13,7 @@
         <result column="name" property="name" javaType="java.lang.String"/>
     </resultMap>
 
-    <resultMap id="allQuestionListResultMap" type="com.gyumin.project.doctalkapi.dto.QuestionListResponseDto">
+    <resultMap id="allQuestionListResultMap" type="com.gyumin.project.doctalkapi.dto.QuestionResponseDto">
         <id column="id" property="id" javaType="java.lang.Long"/>
         <result column="title" property="title" javaType="java.lang.String"/>
         <result column="content" property="content" javaType="java.lang.String"/>
