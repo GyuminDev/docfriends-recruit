@@ -20,4 +20,9 @@ public class QuestionService {
         return questionMapper.findAllByOrderByCreatedDateDesc();
     }
 
+    @Transactional
+    public QuestionResponseDto findById(Long id) {
+        return questionMapper.findById(id);
+    }
+
 }
