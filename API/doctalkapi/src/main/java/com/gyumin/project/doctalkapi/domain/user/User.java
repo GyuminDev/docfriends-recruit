@@ -1,5 +1,6 @@
 package com.gyumin.project.doctalkapi.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gyumin.project.doctalkapi.domain.BaseTimeEntity;
 import com.gyumin.project.doctalkapi.domain.UserStatus;
 import lombok.Builder;
@@ -22,16 +23,12 @@ public class User extends BaseTimeEntity {
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
-
-
-
-//    @Column(nullable = false, updatable = false)
-//    private LocalDateTime createdDate;
 
     @Builder
     public User(String email, String password, UserStatus userStatus) {

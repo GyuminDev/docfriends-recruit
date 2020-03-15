@@ -1,4 +1,4 @@
-insert into user (email, password, user_status, created_date) values ( 'pleasure082@gmail.com', 'test1234', 'ACTIVE', CURRENT_TIMESTAMP() );
+insert into user (email, password, user_status, created_date) values ( 'pleasure082@gmail.com', '$2a$10$konqnp2DqOQ2WQtUgtri0e8BrW2SYqVgFIswridakKemeN4ti9zI6', 'ACTIVE', CURRENT_TIMESTAMP() );
 
 insert into doctor (name, created_date) values ('조용윤 의사', current_timestamp() );
 insert into doctor (name, created_date) values ('김병주 한의사', current_timestamp() );
