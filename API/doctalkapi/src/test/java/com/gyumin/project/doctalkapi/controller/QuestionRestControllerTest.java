@@ -34,11 +34,30 @@ public class QuestionRestControllerTest {
     }
 
     @Test
-    public void getQuestions() throws Exception {
-        mockMvc.perform(get("/api/v1/questions")
+    public void getQuestionDetail() throws Exception {
+        mockMvc.perform(get("/api/v1/question/1")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void getQuestionDetailNotFound() throws Exception {
+        mockMvc.perform(get("/api/v1/question/0")
+//                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void getQuestions() throws Exception {
+        mockMvc.perform(get("/api/v1/questions")
+                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+
 }
