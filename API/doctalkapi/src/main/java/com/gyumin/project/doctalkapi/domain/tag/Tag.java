@@ -1,7 +1,7 @@
 package com.gyumin.project.doctalkapi.domain.tag;
 
 import com.gyumin.project.doctalkapi.domain.BaseTimeEntity;
-import com.gyumin.project.doctalkapi.domain.question.Question;
+import com.gyumin.project.doctalkapi.domain.questiontag.QuestionTag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,9 +21,6 @@ public class Tag extends BaseTimeEntity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany
-    @JoinTable(name="Tag_Question",
-    joinColumns = @JoinColumn(name = "tag_id"),
-    inverseJoinColumns = @JoinColumn(name = "question_id"))
-    private List<Question> questionList = new ArrayList<>();
+    @OneToMany(mappedBy = "tag")
+    private List<QuestionTag> questionTagList = new ArrayList<>();
 }

@@ -7,10 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
-@Entity
-@NoArgsConstructor
 @Getter
+@NoArgsConstructor
+@Entity
 public class User extends BaseTimeEntity {
 
     @Id
@@ -26,6 +27,11 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
+
+
+
+//    @Column(nullable = false, updatable = false)
+//    private LocalDateTime createdDate;
 
     @Builder
     public User(String email, String password, UserStatus userStatus) {
